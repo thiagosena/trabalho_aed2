@@ -18,7 +18,7 @@
 \lstset{
     backgroundcolor=\color{lbcolor},
     captionpos=b,
-    tabsize=4,    
+    tabsize=4,
     language=[GNU]C++,
     upquote=true,
     aboveskip={1.5\baselineskip},
@@ -36,7 +36,7 @@
 	numberstyle=\tiny,
 	numbersep=5pt,
 	breaklines=true,
-	basicstyle=\footnotesize, 
+	basicstyle=\footnotesize,
 	keywordstyle=\color[rgb]{0,0,1}\bfseries,
 	commentstyle=\color{verde},
 	stringstyle=\color{red}
@@ -49,7 +49,7 @@
 \textbf{Disciplina:} IMD0032 - EDB II
 \\\textbf{Semestre:} 2014/I
 \\\textbf{Professor:} Carlos A. Prolo
-\\\textbf{Alunos:} Bernardo Gurgel, Thiago César
+\\\textbf{Alunos:} José Bernardo Gurgel, Thiago César
 }
 
 \date{} %remove date
@@ -62,7 +62,7 @@
     \item{\textbf{a)}} Nesta questão, as instruções mais executadas são a da linha 26, a condição da linha 25, o k++ da linha 24 e o $k < n$ da linha 24. Mesmo que o número de vezes de execução dessas linhas sejam diferentes ($k < n$ é a mais executada), assintoticamente é a mesma coisa. O número de vezes que $k < n$ é executada é:
 	$$
 	\sum_{j=1}^{n-1} \sum_{k=j+1}^{n-1} 1
-	$$	
+	$$
 No entanto, não é necessário resolvermos exatamente estes somatórios para concluir que, tanto no melhor caso quanto no pior caso, o resultado é $\theta(n^2)$. Nesse caso, em que há dois \textit{for} embutidos, é uma fração quadrática $\theta(n^2)$.
 
 	\item{\textbf{b)}} Complete usando notação assintótica: O número de comparações feitas pela algoritmo no pior caso é \underline{$\theta(n^2)$}. No entanto o número de SWAPS no pior caso é apenas \underline{$\theta(n)$}.
