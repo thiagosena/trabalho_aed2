@@ -6,10 +6,14 @@
 \usepackage{caption}
 \usepackage{xcolor}
 \usepackage{textcomp}
+\usepackage{fancybox}
+\usepackage{tikz}
 
 % Setting new colors
 \definecolor{verde}{rgb}{0,0.5,0}
 \definecolor{lbcolor}{rgb}{0.9,0.9,0.9}
+
+% Setting caption
 \captionsetup[lstlisting]{singlelinecheck=false, margin=0pt, font={bf,footnotesize}}
 
 % Setting layout to display C++ code
@@ -55,6 +59,7 @@
 \date{} %remove date
 
 \begin{document}
+	
 \maketitle
 %First question (Selection Sort)
 \section{Questão}
@@ -72,8 +77,109 @@ No entanto, não é necessário resolvermos exatamente estes somatórios para co
 %Second question (Mergesort)
 \section{Questão}
 \begin{description}
-    \item{\textbf{a)}}
+    \item{\textbf{a)}} Demonstração da análise do algoritmo \textit{mergesort} com divisão feita em partes de tamanhos complementares $\lfloor n/4 \rfloor$ e $\lceil 3n/4 \rceil$, utilizando o método da árvore de recursão:
+
+	\ovalbox{
+	\begin{tikzpicture}[level/.style={sibling distance=20mm/#1}]
+	\node [] (z){$n$}
+	  child {node [] (a) {$\frac{n}{4}$}
+	    child {node [] (b) {$\frac{n}{4^2}$}
+	      child {node {$\vdots$}
+	        child {node [] (d) {$\frac{n}{4^k}$}}
+	        child {node [] (d2) {$\frac{n}{4^k}$}}
+	        child {node [] (d3) {$\frac{n}{4^k}$}}
+	        child {node [] (d4) {$\frac{n}{4^k}$}}
+	      } 
+	      child {node {$\vdots$}}
+	      child {node {$\vdots$}}
+	      child {node {$\vdots$}}
+	    }
+	    child {node [] (b2) {$\frac{n}{4^2}$}}
+	    child {node [] (b3) {$\frac{n}{4^2}$}}
+	    child {node [] (b4) {$\frac{n}{4^2}$}
+	      child {node {$\vdots$}}
+	      child {node {$\vdots$}}
+	      child {node {$\vdots$}}
+	      child {node {$\vdots$}}
+	    }
+	  }
+	  child {node [] (a2) {$\frac{n}{4}$}}
+	  child {node [] (a3) {$\frac{n}{4}$}}
+	  child {node [] (a4) {$\frac{n}{4}$}
+	    child {node [] (b5) {$\frac{n}{4^2}$}
+	      child {node {$\vdots$}}
+	      child {node {$\vdots$}}
+	      child {node {$\vdots$}}
+	      child {node {$\vdots$}}
+	    }
+	    child {node [] (b6) {$\frac{n}{4^2}$}}
+	    child {node [] (b7) {$\frac{n}{4^2}$}}
+	    child {node [] (b8) {$\frac{n}{4^2}$}
+	      child {node {$\vdots$}}
+	      child {node {$\vdots$}}
+	      child {node {$\vdots$}}
+	      child {node (c){$\vdots$}
+	        child {node [] (o) {$\frac{n}{4^k}$}}
+	        child {node [] (o2) {$\frac{n}{4^k}$}}
+	        child {node [] (o3) {$\frac{n}{4^k}$}}
+	        child {node [] (o4) {$\frac{n}{4^k}$}
+	          child [grow=right] {node (q) {$=$} edge from parent[draw=none]
+	            child [grow=right] {node (q) {$\theta_{k = \lg n}(n)$} edge from parent[draw=none]
+	              child [grow=up] {node (r) {$\vdots$} edge from parent[draw=none]
+	                child [grow=up] {node (s) {$\theta_2(n)$} edge from parent[draw=none]
+	                  child [grow=up] {node (t) {$\theta_1(n)$} edge from parent[draw=none]
+	                    child [grow=up] {node (u) {$\theta_0(n)$} edge from parent[draw=none]}
+	                  }
+	                }
+	              }
+	              child [grow=down] {node (v) {$\theta(n \cdot \lg n)$}edge from parent[draw=none]}
+	            }
+	          }
+	        }
+	      }
+	    }
+	  };
+	\path (a) -- (a2) node [midway] {+};
+	\path (a2) -- (a3) node [midway] {+};
+	\path (a3) -- (a4) node [midway] {+};
+	\path (b) -- (b2) node [midway] {+};
+	\path (b2) -- (b3) node [midway] {+};
+	\path (b3) -- (b4) node [midway] {+};
+	\path (b4) -- (b5) node [midway] {+};
+	\path (b5) -- (b6) node [midway] {+};
+	\path (b6) -- (b7) node [midway] {+};
+	\path (b7) -- (b8) node [midway] {+};
+	\path (d) -- (d2) node [midway] {+};
+	\path (d2) -- (d3) node [midway] {+};
+	\path (d3) -- (d4) node [midway] {+};
+	\path (o) -- (o2) node [midway] {+};
+	\path (o2) -- (o3) node [midway] {+};
+	\path (o3) -- (o4) node [midway] {+};
+	\path (o) -- (d4) node (x) [midway] {$\cdots$}
+	  child [grow=down] {
+	    node (y) {$\theta\left(\displaystyle\sum_{i = 0}^k 4^i \cdot \frac{n}{4^i}\right)$}
+	    edge from parent[draw=none]
+	  };
+	\path (q) -- (r) node [midway] {+};
+	\path (s) -- (r) node [midway] {+};
+	\path (s) -- (t) node [midway] {+};
+	\path (s) -- (b8) node [midway] {=};
+	\path (t) -- (u) node [midway] {+};
+	\path (z) -- (u) node [midway] {=};
+	\path (a4) -- (t) node [midway] {=};
+	\path (y) -- (x) node [midway] {$\Downarrow$};
+	\path (v) -- (y)
+	  node (w) [midway] {$\theta\left(\displaystyle\sum_{i = 0}^k n\right) = \theta(k \cdot n)$};
+	\path (q) -- (v) node [midway] {=};
+	\path (d4) -- (x) node [midway] {+};
+	\path (o4) -- (x) node [midway] {+};
+	\path (y) -- (w) node [midway] {$=$};
+	\path (v) -- (w) node [midway] {$\Leftrightarrow$};
+	\path (r) -- (c) node [midway] {$\cdots$};
+	\end{tikzpicture}}
+
 	\item{\textbf{b)}}
+
 	\item{\textbf{c)}}
 \end{description}
 
