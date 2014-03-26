@@ -22,7 +22,7 @@
 \lstset{
     backgroundcolor=\color{lbcolor},
     captionpos=b,
-    tabsize=4,    
+    tabsize=4,
     language=[GNU]C++,
     upquote=true,
     aboveskip={1.5\baselineskip},
@@ -40,7 +40,7 @@
 	numberstyle=\tiny,
 	numbersep=5pt,
 	breaklines=true,
-	basicstyle=\footnotesize, 
+	basicstyle=\footnotesize,
 	keywordstyle=\color[rgb]{0,0,1}\bfseries,
 	commentstyle=\color{verde},
 	stringstyle=\color{red}
@@ -53,7 +53,7 @@
 \textbf{Disciplina:} IMD0032 - EDB II
 \\\textbf{Semestre:} 2014/I
 \\\textbf{Professor:} Carlos A. Prolo
-\\\textbf{Alunos:} Bernardo Gurgel, Thiago César
+\\\textbf{Alunos:} José Bernardo Gurgel, Thiago César
 }
 
 \date{} %remove date
@@ -67,17 +67,17 @@
     \item{\textbf{a)}} Nesta questão, as instruções mais executadas são a da linha 26, a condição da linha 25, o k++ da linha 24 e o $k < n$ da linha 24. Mesmo que o número de vezes de execução dessas linhas sejam diferentes ($k < n$ é a mais executada), assintoticamente é a mesma coisa. O número de vezes que $k < n$ é executada é:
 	$$
 	\sum_{j=1}^{n-1} \sum_{k=j+1}^{n-1} 1
-	$$	
-No entanto, não é necessário resolvermos exatamente estes somatórios para concluir que, tanto no melhor caso quanto no pior caso, o resultado é $\theta(n^2)$. Nesse caso, em que há dois \textit{for} embutidos, é uma fração quadrática $\theta(n^2)$.
+	$$
+No entanto, não é necessário resolvermos exatamente estes somatórios para concluir que, tanto no melhor caso quanto no pior caso, o resultado é $\Theta(n^2)$. Nesse caso, em que há dois \textit{for} embutidos, é uma fração quadrática $\Theta(n^2)$.
 
-	\item{\textbf{b)}} Complete usando notação assintótica: O número de comparações feitas pela algoritmo no pior caso é \underline{$\theta(n^2)$}. No entanto o número de SWAPS no pior caso é apenas \underline{$\theta(n)$}.
-	\item{\textbf{c)}}
+	\item{\textbf{b)}} Complete usando notação assintótica: O número de comparações feitas pelo algoritmo no pior caso é \underline{$\Theta(n^2)$}. No entanto o número de SWAPS no pior caso é apenas \underline{$\Theta(n)$}.
+	\item{\textbf{c)}} No segundo algoritmo, é utilizada a função \texttt{menor}, no qual recebe como um dos parâmetros um vetor \texttt{v}. O que temos que observar é que este vetor \textbf{não} é passado como uma referência, como um ponteiro. E isto é muito relevante para a performance do algoritmo. O que está acontecendo é que quando passamos o vetor como parâmetro, a função irá criar um \textbf{novo} \texttt{array} e percorrer o que foi passado como parâmetro para poder criar uma cópia no novo. Ou seja, apesar de não ser um problema explícito, o algoritmo acaba criando novos percursos que afetam sua performance.
 \end{description}
 
 %Second question (Mergesort)
 \section{Questão}
 \begin{description}
-    \item{\textbf{a)}} Demonstração da análise do algoritmo \textit{mergesort} com divisão feita em partes de tamanhos complementares $\lfloor n/4 \rfloor$ e $\lceil 3n/4 \rceil$, utilizando o método da árvore de recursão:
+    \item{\textbf{a)}} Demonstração da análise do algoritmo \textit{mergesort} com divisão feita em partes de tamanhos complementares $\lfloor n/4 \rfloor$ e $\lceil 3n/4 \rceil$, utilizando o método da árvore de recursão, percebemos que a execução no pior caso do algoritmo, ainda permanece como $\Theta (n log(n))$:
 
 	\ovalbox{
 	\begin{tikzpicture}[level/.style={sibling distance=20mm/#1}]
@@ -124,15 +124,15 @@ No entanto, não é necessário resolvermos exatamente estes somatórios para co
 	        child {node [] (o3) {$\frac{n}{4^k}$}}
 	        child {node [] (o4) {$\frac{n}{4^k}$}
 	          child [grow=right] {node (q) {$=$} edge from parent[draw=none]
-	            child [grow=right] {node (q) {$\theta_{k = \lg n}(n)$} edge from parent[draw=none]
+	            child [grow=right] {node (q) {$\Theta_{k = \lg n}(n)$} edge from parent[draw=none]
 	              child [grow=up] {node (r) {$\vdots$} edge from parent[draw=none]
-	                child [grow=up] {node (s) {$\theta_2(n)$} edge from parent[draw=none]
-	                  child [grow=up] {node (t) {$\theta_1(n)$} edge from parent[draw=none]
-	                    child [grow=up] {node (u) {$\theta_0(n)$} edge from parent[draw=none]}
+	                child [grow=up] {node (s) {$\Theta_2(n)$} edge from parent[draw=none]
+	                  child [grow=up] {node (t) {$\Theta_1(n)$} edge from parent[draw=none]
+	                    child [grow=up] {node (u) {$\Theta_0(n)$} edge from parent[draw=none]}
 	                  }
 	                }
 	              }
-	              child [grow=down] {node (v) {$\theta(n \cdot \lg n)$}edge from parent[draw=none]}
+	              child [grow=down] {node (v) {$\Theta(n \cdot \lg n)$}edge from parent[draw=none]}
 	            }
 	          }
 	        }
@@ -157,7 +157,7 @@ No entanto, não é necessário resolvermos exatamente estes somatórios para co
 	\path (o3) -- (o4) node [midway] {+};
 	\path (o) -- (d4) node (x) [midway] {$\cdots$}
 	  child [grow=down] {
-	    node (y) {$\theta\left(\displaystyle\sum_{i = 0}^k 4^i \cdot \frac{n}{4^i}\right)$}
+	    node (y) {$\Theta\left(\displaystyle\sum_{i = 0}^k 4^i \cdot \frac{n}{4^i}\right)$}
 	    edge from parent[draw=none]
 	  };
 	\path (q) -- (r) node [midway] {+};
@@ -169,7 +169,7 @@ No entanto, não é necessário resolvermos exatamente estes somatórios para co
 	\path (a4) -- (t) node [midway] {=};
 	\path (y) -- (x) node [midway] {$\Downarrow$};
 	\path (v) -- (y)
-	  node (w) [midway] {$\theta\left(\displaystyle\sum_{i = 0}^k n\right) = \theta(k \cdot n)$};
+	  node (w) [midway] {$\Theta\left(\displaystyle\sum_{i = 0}^k n\right) = \Theta(k \cdot n)$};
 	\path (q) -- (v) node [midway] {=};
 	\path (d4) -- (x) node [midway] {+};
 	\path (o4) -- (x) node [midway] {+};
@@ -204,12 +204,12 @@ A probabilidade $p$ de se inserir $N$ itens consecutivos sem colisão em uma tab
 
 Assim, uma das formas de resolver as \textit{colisões} é simplesmente construir uma lista linear encadeada para cada endereço da tabela, desse modo, todas as chaves com o mesmo endereço são encadeadas em uma lista linear.
 
-A função de inserção, nesse caso, \textit{CHAINED-HASH-INSERT(T, x)} insere o elemento $x$ na cabeça da lista $T[h(x.key)]$. Portanto, o tempo de execução no pior caso, para a operação de inserção, é $\theta(1)$.
+A função de inserção, nesse caso, \textit{CHAINED-HASH-INSERT(T, x)} insere o elemento $x$ na cabeça da lista $T[h(x.key)]$. Portanto, o tempo de execução no pior caso, para a operação de inserção, é $\Theta(1)$.
 
 %Fifth question (Construção de um algorítmo)
 \section{Questão}
 \lstinputlisting[caption=Programa que exibe uma mensagem se a soma dos valores de um conjunto A é igual à soma dos valores em S-A., language=C++]{is_subset_sum.cpp}
 
-Suponhamos que temos $n = 500$ números, no entanto, sabemos que a soma de todos os números é no máximo $N = 10000$. Esse pequeno detalhe faz com que o problema possa ser resolvido com tempo de execução igual a $\theta(n\times N)$.
+Suponhamos que temos $n = 500$ números, no entanto, sabemos que a soma de todos os números é no máximo $N = 10000$. Esse pequeno detalhe faz com que o problema possa ser resolvido com tempo de execução igual a $\Theta(n\times N)$.
 
 \end{document}
