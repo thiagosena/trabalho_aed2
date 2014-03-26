@@ -65,8 +65,8 @@
 	$$
 No entanto, não é necessário resolvermos exatamente estes somatórios para concluir que, tanto no melhor caso quanto no pior caso, o resultado é $\theta(n^2)$. Nesse caso, em que há dois \textit{for} embutidos, é uma fração quadrática $\theta(n^2)$.
 
-	\item{\textbf{b)}} Complete usando notação assintótica: O número de comparações feitas pela algoritmo no pior caso é \underline{$\theta(n^2)$}. No entanto o número de SWAPS no pior caso é apenas \underline{$\theta(n)$}.
-	\item{\textbf{c)}}
+	\item{\textbf{b)}} Complete usando notação assintótica: O número de comparações feitas pelo algoritmo no pior caso é \underline{$\theta(n^2)$}. No entanto o número de SWAPS no pior caso é apenas \underline{$\theta(n)$}.
+	\item{\textbf{c)}} No segundo algoritmo, é utilizada a função \texttt{menor}, no qual recebe como um dos parâmetros um vetor \texttt{v}. O que temos que observar é que este vetor \textbf{não} é passado como uma referência, como um ponteiro. E isto é muito relevante para a performance do algoritmo. O que está acontecendo é que quando passamos o vetor como parâmetro, a função irá criar um \textbf{novo} \texttt{array} e percorrer o que foi passado como parâmetro para poder criar uma cópia no novo. Ou seja, apesar de não ser um problema explícito, o algotimo acaba criando novos percursos que afetam sua performance.
 \end{description}
 
 %Second question (Mergesort)
