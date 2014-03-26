@@ -1,0 +1,109 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage[hmargin=2cm,vmargin=1cm,bmargin=2cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[brazil]{babel}
+\usepackage{framed}
+\usepackage{caption}
+\usepackage{xcolor}
+\usepackage{textcomp}
+
+% Setting new colors
+\definecolor{verde}{rgb}{0,0.5,0}
+\definecolor{lbcolor}{rgb}{0.9,0.9,0.9}
+\captionsetup[lstlisting]{singlelinecheck=false, margin=0pt, font={bf,footnotesize}}
+
+% Setting layout to display C++ code
+\usepackage{listingsutf8}
+
+\lstset{
+    backgroundcolor=\color{lbcolor},
+    captionpos=b,
+    tabsize=4,    
+    language=[GNU]C++,
+    upquote=true,
+    aboveskip={1.5\baselineskip},
+    columns=fixed,
+    showstringspaces=false,
+    breaklines=true,
+    frameround=fttt,
+    prebreak = \raisebox{0ex}[0ex][0ex]{\ensuremath{\hookleftarrow}},
+    showtabs=false,
+    showspaces=false,
+    showstringspaces=false,
+    identifierstyle=\ttfamily,
+	frame=lines,
+	numbers=left,
+	numberstyle=\tiny,
+	numbersep=5pt,
+	breaklines=true,
+	basicstyle=\footnotesize, 
+	keywordstyle=\color[rgb]{0,0,1}\bfseries,
+	commentstyle=\color{verde},
+	stringstyle=\color{red}
+}
+
+
+%title and author details
+\title{TRABALHO DA UNIDADE 1 - Análise de Algoritmos}
+\author{
+\textbf{Disciplina:} IMD0032 - EDB II
+\\\textbf{Semestre:} 2014/I
+\\\textbf{Professor:} Carlos A. Prolo
+\\\textbf{Alunos:} Bernardo Gurgel, Thiago César
+}
+
+\date{} %remove date
+
+\begin{document}
+\maketitle
+%First question (Selection Sort)
+\section{Questão}
+\begin{description}
+    \item{\textbf{a)}} Nesta questão, as instruções mais executadas são a da linha 26, a condição da linha 25, o k++ da linha 24 e o $k < n$ da linha 24. Mesmo que o número de vezes de execução dessas linhas sejam diferentes ($k < n$ é a mais executada), assintoticamente é a mesma coisa. O número de vezes que $k < n$ é executada é:
+	$$
+	\sum_{j=1}^{n-1} \sum_{k=j+1}^{n-1} 1
+	$$	
+No entanto, não é necessário resolvermos exatamente estes somatórios para concluir que, tanto no melhor caso quanto no pior caso, o resultado é $\theta(n^2)$. Nesse caso, em que há dois \textit{for} embutidos, é uma fração quadrática $\theta(n^2)$.
+
+	\item{\textbf{b)}} Complete usando notação assintótica: O número de comparações feitas pela algoritmo no pior caso é \underline{$\theta(n^2)$}. No entanto o número de SWAPS no pior caso é apenas \underline{$\theta(n)$}.
+	\item{\textbf{c)}}
+\end{description}
+
+%Second question (Mergesort)
+\section{Questão}
+\begin{description}
+    \item{\textbf{a)}}
+	\item{\textbf{b)}}
+	\item{\textbf{c)}}
+\end{description}
+
+%Third question (Análise do Quicksort)
+\section{Questão}
+\begin{description}
+    \item{\textbf{a)}}
+	\item{\textbf{b)}}
+	\item{\textbf{c)}}
+	\item{\textbf{d)}}
+\end{description}
+
+%Fourth question (Análise de pior caso da inserção de um elemento na Hash)
+\section{Questão}
+Entre as muitas aplicações do \textit{hash}, referimos a implementação eficiente dos métodos de tabelação. Estes métodos são usados em pesquisas heurísticas, e em jogos, por exemplo, para guardar o valor de configurações de um tabuleiro de xadrez.
+Quando inserimos um valor $x$ e posteriormente um valor $y$ com $h(y)$ = $h(x)$, temos uma \textit{colisão}. A posição da tabela para onde $y$ deveria ir já está ocupada e terá que existir um método para resolver as colisões.
+
+A probabilidade $p$ de se inserir $N$ itens consecutivos sem colisão em uma tabela de tamanho $M$ é:
+	$$
+	p = \frac{M-1}{M}\times\frac{M-2}{M}\times...\times\frac{M-N+1}{M} = \prod \limits_{i=1}^N \frac{M-i+1}{M} = \frac{M!}{(M-N)!M^N}
+	$$
+
+Assim, uma das formas de resolver as \textit{colisões} é simplesmente construir uma lista linear encadeada para cada endereço da tabela, desse modo, todas as chaves com o mesmo endereço são encadeadas em uma lista linear.
+
+A função de inserção, nesse caso, \textit{CHAINED-HASH-INSERT(T, x)} insere o elemento $x$ na cabeça da lista $T[h(x.key)]$. Portanto, o tempo de execução no pior caso, para a operação de inserção, é $\theta(1)$.
+
+%Fifth question (Construção de um algorítmo)
+\section{Questão}
+\lstinputlisting[caption=Programa que exibe uma mensagem se a soma dos valores de um conjunto A é igual à soma dos valores em S-A., language=C++]{is_subset_sum.cpp}
+
+Suponhamos que temos $n = 500$ números, no entanto, sabemos que a soma de todos os números é no máximo $N = 10000$. Esse pequeno detalhe faz com que o problema possa ser resolvido com tempo de execução igual a $\theta(n\times N)$.
+
+\end{document}
