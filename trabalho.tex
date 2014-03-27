@@ -203,7 +203,12 @@ No entanto, não é necessário resolvermos exatamente estes somatórios para co
 %Third question (Análise do Quicksort)
 \section{Questão}
 \begin{description}
-    \item{\textbf{a)}}
+  \item{\textbf{a)}} Se temos partições onde no menor lado teremos sempre no mínimo $\rfloor n/k \rfloor$ para qualquer $\geq k 2$, teremos a recorrência:
+  	
+ $$f(n) = 2T(n/2) + \Theta(n)$$
+
+ Observando este resultado, verificamos que se encaixa com o melhor (geral) do QuickSort. Então, aplicando o segundo caso do teorema master, obtemos a solução de $f(n) = \Theta(n lg n)$.
+
 	\item{\textbf{b)}}
 	\item{\textbf{c)}}
 	\item{\textbf{d)}}
