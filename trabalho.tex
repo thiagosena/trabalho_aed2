@@ -213,6 +213,52 @@ No entanto, não é necessário resolvermos exatamente estes somatórios para co
  Observando este resultado, verificamos que se encaixa com o melhor (geral) do QuickSort. Então, aplicando o segundo caso do teorema master, obtemos a solução de $T(n) = \Theta(n lg n)$.
 
 	\item{\textbf{b)}}
+
+	\ovalbox{
+	\begin{tikzpicture}[level/.style={sibling distance=60mm/#1}]
+	\node [] (z){$n$}
+	  child {node [] (a) {$2$}
+	  }
+	  child {node [] (b) {$n-2$}
+	    child {node [] (c) {$2$}
+	    }
+	  child {node [] (d) {$n-4$}
+	    child {node {$2$}}
+	    child {node (e){$\vdots$}
+		  child {node {$2$}}
+	      child {node [] (p) {$2$}
+	        child [grow=right] {node (q) {$=$} edge from parent[draw=none]
+	          child [grow=right] {node (q) {$3$} edge from parent[draw=none]
+	            child [grow=up] {node (r) {$\vdots$} edge from parent[draw=none]
+	              child [grow=up] {node (s) {$O_2(n-3)$} edge from parent[draw=none]
+	                child [grow=up] {node (t) {$O_1(n-1)$} edge from parent[draw=none]
+	                  child [grow=up] {node (u) {$O_0(n)$} edge from parent[draw=none]}
+	                }
+	              }
+	            }
+	            child [grow=down] {node (v) {$O(n^2)$}edge from parent[draw=none]}
+	          }
+	        }
+	      }
+	    }
+	  }
+	};
+	\end{tikzpicture}}
+
+	Caracterizando uma recorrência correspondente a:
+
+	$$T(n) = T(n-2) + \Theta(n)$$
+
+	Resolvendo a recorrência:
+
+	$T(n) = T(n-2) + \Theta(n)$
+
+	$T(n) = \sum_{k=2}^n \Theta(k)$
+
+	$T(n) = \Theta(\sum_{k=2}^n k)$
+
+	$T(n) = \Theta(n^2)$
+
 	\item{\textbf{c)}} Considerando o caso em que \textit{em todas as invocações recursivas} a partição produz vetores de dimensões $2$ e $n-2$ logo, o tempo de pior caso ficaria da seguinte forma:
 	
 	$$
