@@ -71,7 +71,7 @@
 No entanto, não é necessário resolvermos exatamente estes somatórios para concluir que, tanto no melhor caso quanto no pior caso, o resultado é $\Theta(n^2)$. Nesse caso, em que há dois \textit{for} embutidos, é uma fração quadrática $\Theta(n^2)$.
 
 	\item{\textbf{b)}} Complete usando notação assintótica: O número de comparações feitas pelo algoritmo no pior caso é \underline{$\Theta(n^2)$}. No entanto o número de SWAPS no pior caso é apenas \underline{$\Theta(n)$}.
-	\item{\textbf{c)}} No segundo algoritmo, é utilizada a função \texttt{menor}, no qual recebe como um dos parâmetros um vetor \texttt{v}. O que temos que observar é que este vetor \textbf{não} é passado como uma referência, como um ponteiro. E isto é muito relevante para a performance do algoritmo. O que está acontecendo é que quando passamos o vetor como parâmetro, a função irá criar um \textbf{novo} vetor e \textpf{percorrer} o que foi passado como parâmetro para poder criar uma cópia no novo. Ou seja, apesar de não ser um problema explícito, o algoritmo acaba criando novos percursos que afetam sua performance. Por isso o segundo algoritmo acaba levando mais tempo que o primeiro.
+	\item{\textbf{c)}} No segundo algoritmo, é utilizada a função \texttt{menor}, no qual recebe como um dos parâmetros um vetor \texttt{v}. O que temos que observar é que este vetor \textbf{não} é passado como uma referência, como um ponteiro. E isto é muito relevante para a performance do algoritmo. O que está acontecendo é que quando passamos o vetor como parâmetro, a função irá criar um \textbf{novo} vetor e \textbf{percorrer} o que foi passado como parâmetro para poder criar uma cópia no novo. Ou seja, apesar de não ser um problema explícito, o algoritmo acaba criando novos percursos que afetam sua performance. Por isso o segundo algoritmo acaba levando mais tempo que o primeiro.
 \end{description}
 
 %Second question (Mergesort)
@@ -204,7 +204,7 @@ No entanto, não é necessário resolvermos exatamente estes somatórios para co
 \begin{description}
   \item{\textbf{a)}} Se temos partições onde no menor lado teremos sempre no mínimo $\rfloor n/k \rfloor$ para qualquer $\geq k 2$, teremos a recorrência:
   	
- $$f(n) = 2T(n/2) + \Theta(n)$$
+ $$T(n) = 2T(n/2) + \Theta(n)$$
 
  Observando este resultado, verificamos que se encaixa com o melhor (geral) do QuickSort. Então, aplicando o segundo caso do teorema master, obtemos a solução de $T(n) = \Theta(n lg n)$.
 
