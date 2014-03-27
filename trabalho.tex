@@ -8,6 +8,7 @@
 \usepackage{textcomp}
 \usepackage{fancybox}
 \usepackage{tikz}
+\usepackage{hyperref}
 
 % Setting new colors
 \definecolor{verde}{rgb}{0,0.5,0}
@@ -46,6 +47,8 @@
 	stringstyle=\color{red}
 }
 
+
+\urlstyle{same}
 
 %title and author details
 \title{TRABALHO DA UNIDADE 1 - Análise de Algoritmos}
@@ -232,5 +235,8 @@ A função de inserção, nesse caso, \textit{CHAINED-HASH-INSERT(T, x)} insere 
 \lstinputlisting[caption=Programa que exibe uma mensagem se a soma dos valores de um conjunto A é igual à soma dos valores em S-A., language=C++]{is_subset_sum.cpp}
 
 Suponhamos que temos $n = 500$ números, no entanto, sabemos que a soma de todos os números é no máximo $N = 10000$. Esse pequeno detalhe faz com que o problema possa ser resolvido com tempo de execução igual a $\Theta(n\times N)$.
+
+O link abaixo é uma resolução do problema de partição no qual um conjunto de números é dado, e é desejável quebrar o conjunto em dois subconjuntos com a soma de seus elementos iguais.\\
+\url{http://people.sc.fsu.edu/~jburkardt/cpp_src/partition_problem/partition_problem.html}
 
 \end{document}
