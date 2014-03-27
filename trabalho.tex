@@ -183,7 +183,8 @@ No entanto, não é necessário resolvermos exatamente estes somatórios para co
 
 	\item{\textbf{b)}} De acordo com a questão anterior, generalizando a expressão $\lfloor n/k \rfloor$ e $\lceil ((k-1)/k)n \rceil$, para um inteiro $k\geq 2$ podemos demonstrar da seguinte forma:
 	
-	$$T(n)=\left\{\begin{array}{rc}
+	$$
+	T(n)=\left\{\begin{array}{rc}
 	1,&\mbox{se}\quad n = 1,\\
 	kT(n/k)+n, &\mbox{se}\quad n > 1.
 	\end{array}\right.
@@ -212,8 +213,106 @@ No entanto, não é necessário resolvermos exatamente estes somatórios para co
  Observando este resultado, verificamos que se encaixa com o melhor (geral) do QuickSort. Então, aplicando o segundo caso do teorema master, obtemos a solução de $T(n) = \Theta(n lg n)$.
 
 	\item{\textbf{b)}}
-	\item{\textbf{c)}}
-	\item{\textbf{d)}}
+	\item{\textbf{c)}} Considerando o caso em que \textit{em todas as invocações recursivas} a partição produz vetores de dimensões $2$ e $n-2$ logo, o tempo de pior caso ficaria da seguinte forma:
+	
+	$$
+		T(n) = \Theta(2) + T(n-2) + T(n) = \sum_{i=0}^{n} \Theta(i) = \Theta(n^2)
+	$$
+	
+	Para provar que $T(n) \leq cn^2$ para $O(n^2)$
+	
+	$$ T(n) = \max_{0 \leq2 \leq n-2} \{T(2)+T(n-2)\}+\Theta(n) $$
+	$$
+	{\leq} \max_{0 \leq2 \leq n-2} \left\{\begin{array}{rc}
+	T(2)+T(n-2)
+	\end{array}\right\} + bn
+	$$ 
+	$$
+	=\max_{0 \leq2 \leq n-2} \left\{\begin{array}{rc}
+	c2^2+c(n-2)^2
+	\end{array}\right\} + bn
+	$$ 
+	$$
+	=c \max_{0 \leq2 \leq n-2} \left\{\begin{array}{rc}
+	2^2+(n-2)^2
+	\end{array}\right\} + bn
+	$$ 
+	$$=c (n-2)^2 + bn$$
+	$$ =cn^2-4cn + 4 + bn $$
+	$$ {\leq} cn^2 $$
+	
+	Para provar que $T(n) \ge dn^2$ para $\Omega(n^2)$
+	
+	$$ T(n) = \max_{0 \leq2 \leq n-2} \{T(2)+T(n-2)\}+\Theta(n) $$
+	$$
+	{\ge} \max_{0 \leq2 \leq n-2} \left\{\begin{array}{rc}
+	T(2)+T(n-2)
+	\end{array}\right\} + bn
+	$$ 
+	$$
+	=\max_{0 \leq2 \leq n-2} \left\{\begin{array}{rc}
+	d2^2+d(n-2)^2
+	\end{array}\right\} + bn
+	$$ 
+	$$
+	=d \max_{0 \leq2 \leq n-2} \left\{\begin{array}{rc}
+	2^2+(n-2)^2
+	\end{array}\right\} + bn
+	$$ 
+	$$=d (n-2)^2 + bn$$
+	$$ =dn^2-4dn + 4 + bn $$
+	$$ {\ge} dn^2 $$
+	
+	Portanto, chegamos a conclusão que para a região considerada em partes de tamanhos $2$ e $n-2$ o tempo de execução do algoritmo Quicksort no pior caso é $\Theta(n^2)$
+	
+	
+	\item{\textbf{d)}} Generalizando a conclusão acima, iremos demonstrar para particionamento com tamanhos $k$ e $n-k$, para um inteiro positivo $k$ qualquer:
+	Para provar que $T(n) \leq cn^2$ para $O(n^2)$
+	
+	$$ T(n) = \max_{0 \leq k \leq n-k} \{T(k)+T(n-k)\}+\Theta(n) $$
+	$$
+	{\leq} \max_{0 \leq k \leq n-k} \left\{\begin{array}{rc}
+	T(k)+T(n-k)
+	\end{array}\right\} + bn
+	$$ 
+	$$
+	=\max_{0 \leq k \leq n-k} \left\{\begin{array}{rc}
+	ck^2+c(n-k)^2
+	\end{array}\right\} + bn
+	$$ 
+	$$
+	=c \max_{0 \leq k \leq n-k} \left\{\begin{array}{rc}
+	k^2+(n-k)^2
+	\end{array}\right\} + bn
+	$$ 
+	$$=c (n-k)^2 + bn$$
+	$$ =cn^2-2kcn + k^2 + bn $$
+	$$ {\leq} cn^2 $$
+	
+	Para provar que $T(n) \ge dn^2$ para $\Omega(n^2)$
+	
+	$$ T(n) = \max_{0 \leq k \leq n-k} \{T(k)+T(n-k)\}+\Theta(n) $$
+	$$
+	{\ge} \max_{0 \leq k \leq n-k} \left\{\begin{array}{rc}
+	T(k)+T(n-k)
+	\end{array}\right\} + bn
+	$$ 
+	$$
+	=\max_{0 \leq k \leq n-k} \left\{\begin{array}{rc}
+	dk^2+d(n-k)^2
+	\end{array}\right\} + bn
+	$$ 
+	$$
+	=d \max_{0 \leq k \leq n-k} \left\{\begin{array}{rc}
+	k^2+(n-k)^2
+	\end{array}\right\} + bn
+	$$ 
+	$$=d (n-k)^2 + bn$$
+	$$ =dn^2-2kdn + k^2 + bn $$
+	$$ {\ge} dn^2 $$
+	
+	No entanto, a complexidade de tempo para particionamento com tamanhos $k$ e $n-k$, é no pior caso $\Theta(n^2)$  
+	
 \end{description}
 
 %Fourth question (Análise de pior caso da inserção de um elemento na Hash)
